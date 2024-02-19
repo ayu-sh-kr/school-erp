@@ -1,0 +1,24 @@
+### ADD Student
+POST http://localhost:8080/api/student/create
+Content-Type: application/json
+
+{
+  "studentName": "Ayush Jaiswal",
+  "studentEmail": "akjaiswal2003@gmail.com",
+  "fatherName": "Arvind Jaiswal",
+  "motherName": "Reena Devi",
+  "siblingName": "Mansi Jaiswal",
+  "standard": "V",
+  "section": "A",
+  "addresses": [
+    {
+      "street": "Bhora Bajar",
+      "addressLine1": "Primary School Bhora",
+      "addressLine2": "",
+      "pincode": "221201",
+      "city": "Varanasi",
+      "state": "UP",
+      "country": "India"
+    }
+  ]
+}
