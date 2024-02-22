@@ -1,7 +1,7 @@
 package dev.archimedes.entities;
 
-import dev.archimedes.embeddables.Address;
-import dev.archimedes.embeddables.Attendance;
+import dev.archimedes.enums.RoleType;
+import dev.archimedes.utils.BasicRecord;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -10,19 +10,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student extends BasicRecord{
+public class Student extends BasicRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "student_id")
-    private int id;
+    private Integer id;
 
     @Column(name = "student_name", nullable = false)
     @NotNull
@@ -52,13 +53,36 @@ public class Student extends BasicRecord{
     @Column(name = "section", nullable = false)
     private String section;
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    private List<Address> addresses;
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType = RoleType.STUDENT;
 
-    @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(
-            name = "student_attendance",
-            joinColumns = @JoinColumn(name = "student_id")
+    @OneToMany
+    @JoinColumn(
+            name = "student_id"
     )
-    private List<Attendance> attendances;
+    private List<Address> addresses = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(
+            name = "student_id"
+    )
+    private List<Attendance> attendances = new ArrayList<>();
+
+
+    public void addAddress(Address address){
+        this.addresses.add(address);
+    }
+
+    public void remove(Address address){
+        this.addresses.remove(address);
+    }
+
+    public void addAttendance(Attendance attendance){
+        this.attendances.add(attendance);
+    }
+
+    public void removeAttendance(Attendance attendance){
+        this.attendances.remove(attendance);
+    }
+
 }

@@ -1,4 +1,4 @@
-package dev.archimedes.entities;
+package dev.archimedes.utils;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
