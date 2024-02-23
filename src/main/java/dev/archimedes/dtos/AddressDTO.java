@@ -1,6 +1,6 @@
 package dev.archimedes.dtos;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,21 +13,21 @@ import java.io.Serializable;
 public class AddressDTO implements Serializable {
     String id;
 
-    @NotNull
+    @NotBlank
     String street;
 
     String addressLine1;
     String addressLine2;
 
-    @NotNull
+    @NotBlank
     String pincode;
 
-    @NotNull
+    @NotBlank
     String city;
 
-    @NotNull
+    @NotBlank
     String state;
 
-    @NotNull
+    @NotBlank
     String country;
 }

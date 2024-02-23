@@ -5,6 +5,7 @@ import dev.archimedes.dtos.AddressDTO;
 import dev.archimedes.dtos.StudentDTO;
 import dev.archimedes.entities.Address;
 import dev.archimedes.registrar.service.RegistrarService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,7 +22,7 @@ public class RegistrarController {
 
     @PostMapping("/student/add-address")
     public ResponseEntity<?> addAddress(
-            @RequestParam("registrarId") int registrarId, @RequestParam("studentId") int studentId, @RequestBody @Validated AddressDTO addressDTO
+            @RequestParam("registrarId") int registrarId, @RequestParam("studentId") int studentId, @RequestBody @Valid AddressDTO addressDTO
             ){
         Address address = addressConverter.reverseConvert(addressDTO, null);
         return registrarService.addAddressToStudent(address, registrarId, studentId);
