@@ -56,13 +56,13 @@ public class Student extends BasicRecord {
     @Enumerated(EnumType.STRING)
     private RoleType roleType = RoleType.STUDENT;
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true)
     @JoinColumn(
             name = "student_id"
     )
     private List<Address> addresses = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(orphanRemoval = true)
     @JoinColumn(
             name = "student_id"
     )

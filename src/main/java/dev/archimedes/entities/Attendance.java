@@ -19,7 +19,7 @@ public class Attendance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     private boolean present;
 
@@ -27,6 +27,8 @@ public class Attendance {
     private Date date;
 
     private String code;
+
+    private int markedBy = -1;
 
     @Enumerated(EnumType.STRING)
     private AttendanceType attendanceType;

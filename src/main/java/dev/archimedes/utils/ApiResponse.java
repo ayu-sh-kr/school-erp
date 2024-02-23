@@ -15,7 +15,7 @@ public class ApiResponse {
     private String urlPath;
     private HttpStatus httpStatus;
     private Object object;
-    @JsonFormat(pattern = "yyyy-DD-mm HH:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss")
     private Date date;
 
     public static ApiResponse generateResponse(String message, HttpStatus httpStatus){
