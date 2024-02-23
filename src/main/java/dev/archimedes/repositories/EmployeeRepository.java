@@ -9,6 +9,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     Employee findByEmail(String username);
 
-    @Query("select e.email from Employee e where e.email = ?1")
-    String findIdByEmployee_email(String email);
+    @Query("select e.id from Employee e where e.email = ?1")
+    Integer findIdByEmployee_email(String email);
 }
