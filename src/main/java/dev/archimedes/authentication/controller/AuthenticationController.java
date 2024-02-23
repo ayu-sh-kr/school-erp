@@ -9,6 +9,7 @@ import dev.archimedes.repositories.EmployeeRepository;
 import dev.archimedes.service.contract.EncryptionService;
 import dev.archimedes.service.security.TokenService;
 import dev.archimedes.utils.ApiResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +43,7 @@ public class AuthenticationController {
     private final EmployeeRepository employeeRepository;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody @Validated EmployeeRegistrationDTO employeeRegistrationDTO){
+    public ResponseEntity<?> register(@RequestBody @Valid EmployeeRegistrationDTO employeeRegistrationDTO){
         Employee employee = employeeRegistrationConverter.reverseConvert(employeeRegistrationDTO, null);
         return registrarService.createEmployee(employee, 1);
     }
@@ -55,12 +56,13 @@ public class AuthenticationController {
         );
         ApiResponse apiResponse;
         Authentication response = authenticationManager.authenticate(request);
-        System.out.println(response.isAuthenticated());
         if(response.isAuthenticated()){
             String token = tokenService.generateToken(response);
             Map<String, String> stringMap = new HashMap<>();
             stringMap.put("token", token);
-            stringMap.put("userId", employeeRepository.findIdByEmployee_email(loginRequest.getEmail()));
+            stringMap.put("userId", hexEncryptionService.encrypt(
+                    String.valueOf(employeeRepository.findIdByEmployee_email(loginRequest.getEmail()))
+            ));
             apiResponse = ApiResponse.generateResponse(
                     "Login successful", HttpStatus.OK
             );

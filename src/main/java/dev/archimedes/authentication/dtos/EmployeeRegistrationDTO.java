@@ -3,30 +3,30 @@ package dev.archimedes.authentication.dtos;
 import dev.archimedes.utils.validators.annotations.ValidEmployee;
 import dev.archimedes.utils.validators.annotations.ValidRole;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 
 @Getter
 public class EmployeeRegistrationDTO {
 
-    @NotNull
+    @NotBlank
     private String name;
 
     @Email
-    @NotNull
+    @NotBlank
     private String email;
 
-    @NotNull
+    @NotBlank
     private String password;
 
     @ValidRole
-    @NotNull
+    @NotBlank
     private String role;
 
     @ValidEmployee
-    @NotNull
+    @NotBlank
     private String employeeType;
 
-    @NotNull
+    @NotBlank
     private String date;
 }
