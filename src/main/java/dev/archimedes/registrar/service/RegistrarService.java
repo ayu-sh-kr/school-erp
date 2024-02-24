@@ -1,16 +1,17 @@
 package dev.archimedes.registrar.service;
 
+import dev.archimedes.converters.StudentConverter;
 import dev.archimedes.entities.Address;
 import dev.archimedes.entities.Employee;
 import dev.archimedes.entities.Student;
 import dev.archimedes.repositories.EmployeeRepository;
 import dev.archimedes.repositories.StudentRepository;
 import dev.archimedes.utils.ApiResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.Date;
 
@@ -22,14 +23,17 @@ public class RegistrarService {
 
     private final EmployeeRepository employeeRepository;
 
-    public ResponseEntity<?> createStudent(@Validated Student student, int id){
+    private final StudentConverter studentConverter;
+
+    public ResponseEntity<?> createStudent(@Valid Student student, int registrarId){
         try {
-            student.setCreatedBy(id);
-            studentRepository.save(student);
+            student.setCreatedBy(registrarId);
+            student = studentRepository.save(student);
             return new ResponseEntity<>(
                     ApiResponse.builder()
                             .message("Student Created Successfully")
                             .date(new Date())
+                            .object(studentConverter.convert(student, null))
                             .httpStatus(HttpStatus.CREATED)
                     .build(),
                     HttpStatus.CREATED
@@ -45,10 +49,13 @@ public class RegistrarService {
                 Student student = studentRepository.getReferenceById(studentId);
                 student.addAddress(address);
                 student.setUpdatedBy(registrarId);
-                studentRepository.save(student);
+                student = studentRepository.save(student);
                 apiResponse = ApiResponse.generateResponse(
                         "Address Added",
                         HttpStatus.OK
+                );
+                apiResponse.setObject(
+                        studentConverter.convert(student, null)
                 );
                 return new ResponseEntity<>(apiResponse, HttpStatus.OK);
             }
@@ -61,12 +68,6 @@ public class RegistrarService {
     public ResponseEntity<?> createEmployee(Employee employee, int registrarId){
         try{
             ApiResponse apiResponse;
-            if(employeeRepository.existsByEmail(employee.getEmail())){
-                apiResponse = ApiResponse.generateResponse(
-                        "Email already exist", HttpStatus.BAD_REQUEST
-                );
-                return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
-            }else {
                 employee.setCreatedBy(registrarId);
                 employee = employeeRepository.save(employee);
                 apiResponse = ApiResponse.generateResponse(
@@ -74,8 +75,6 @@ public class RegistrarService {
                 );
                 apiResponse.setObject(employee);
                 return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
-            }
-
         }catch (Exception e){
             throw new RuntimeException(e.getLocalizedMessage());
         }
@@ -101,6 +100,5 @@ public class RegistrarService {
             throw new RuntimeException(e.getLocalizedMessage());
         }
     }
-
 
 }
