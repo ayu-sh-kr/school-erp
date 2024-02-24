@@ -1,0 +1,32 @@
+[
+  {
+    "studentName": "Robert Downey Jr.",
+    "studentEmail": "robert@gmail.com",
+    "fatherName": "Robert Downey Sr.",
+    "motherName": "Elsie Downey",
+    "siblingName": "Allyson Downey",
+    "standard": "V",
+    "section": "A",
+    "roleType": "Student"
+  },
+  {
+    "studentName": "Chris Evans",
+    "studentEmail": "chris@gmail.com",
+    "fatherName": "Bob Evans",
+    "motherName": "Lisa Evans",
+    "siblingName": "Scott Evans",
+    "standard": "V",
+    "section": "A",
+    "roleType": "Student"
+  },
+  {
+    "studentName": "Scarlett Johansson",
+    "studentEmail": "scarlett@gmail.com",
+    "fatherName": "Karsten Johansson",
+    "motherName": "Melanie Sloan",
+    "siblingName": "Hunter Johansson",
+    "standard": "V",
+    "section": "A",
+    "roleType": "Student"
+  }
+]

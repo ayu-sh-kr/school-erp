@@ -41,7 +41,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/api/auth/**").permitAll();
-                    auth.requestMatchers(HttpMethod.POST, "/api/registrar/student/add-address").hasAnyAuthority("SCOPE_ADMIN", "SCOPE_REGISTRAR");
+                    auth.requestMatchers(HttpMethod.POST, "/api/registrar/**").hasAnyAuthority("SCOPE_ADMIN", "SCOPE_REGISTRAR");
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -2,7 +2,7 @@ package dev.archimedes.dtos;
 
 import dev.archimedes.utils.validators.annotations.ValidRole;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,27 +16,27 @@ public class StudentDTO implements Serializable {
 
     String id;
 
-    @NotNull
+    @NotBlank
     String studentName;
 
-    @NotNull
+    @NotBlank
     @Email
     String studentEmail;
 
-    @NotNull
+    @NotBlank
     String fatherName;
 
-    @NotNull
+    @NotBlank
     String motherName;
 
     String siblingName;
 
-    @NotNull
+    @NotBlank
     String standard;
 
-    @NotNull
+    @NotBlank
     String section;
 
-    @ValidRole
+    @ValidRole @NotBlank
     String roleType;
 }

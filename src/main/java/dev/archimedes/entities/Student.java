@@ -62,12 +62,8 @@ public class Student extends BasicRecord {
     )
     private List<Address> addresses = new ArrayList<>();
 
-    @OneToMany(orphanRemoval = true)
-    @JoinColumn(
-            name = "student_id"
-    )
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Attendance> attendances = new ArrayList<>();
-
 
     public void addAddress(Address address){
         this.addresses.add(address);

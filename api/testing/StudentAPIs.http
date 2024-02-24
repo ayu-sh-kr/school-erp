@@ -1,24 +1,151 @@
-### ADD Student
-POST http://localhost:8080/api/student/create
+### Admin Login
+POST http://localhost:8080/api/auth/login
 Content-Type: application/json
 
 {
-  "studentName": "Ayush Jaiswal",
-  "studentEmail": "akjaiswal2003@gmail.com",
-  "fatherName": "Arvind Jaiswal",
-  "motherName": "Reena Devi",
-  "siblingName": "Mansi Jaiswal",
+  "email": "ayush.store.7913@gmail.com",
+  "password": "admin"
+}
+
+> {%
+    client.global.set("auth-token", response.body.object.token);
+    client.global.set("registrarId", response.body.object.userId)
+%}
+
+
+### ADD Student
+POST http://localhost:8080/api/registrar/student/create-student?registrarId={{registrarId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "studentName": "Ryan Reynolds",
+  "studentEmail": "ryan@gmail.com",
+  "fatherName": "James Chester Reynolds",
+  "motherName": "Tammy Reynolds",
+  "siblingName": "Jeff Reynold",
   "standard": "V",
   "section": "A",
-  "addresses": [
-    {
-      "street": "Bhora Bajar",
-      "addressLine1": "Primary School Bhora",
-      "addressLine2": "",
-      "pincode": "221201",
-      "city": "Varanasi",
-      "state": "UP",
-      "country": "India"
-    }
-  ]
+  "roleType": "Student"
 }
+
+### Robert Downey Jr. as Student
+POST http://localhost:8080/api/registrar/student/create-student?registrarId={{registrarId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "studentName": "Robert Downey Jr.",
+  "studentEmail": "robert@gmail.com",
+  "fatherName": "Robert Downey Sr.",
+  "motherName": "Elsie Downey",
+  "siblingName": "Allyson Downey",
+  "standard": "V",
+  "section": "A",
+  "roleType": "Student"
+}
+
+### Scarlet Witch as Student
+POST http://localhost:8080/api/registrar/student/create-student?registrarId={{registrarId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "studentName": "Scarlet Witch",
+  "studentEmail": "scarlet@gmail.com",
+  "fatherName": "Magneto",
+  "motherName": "Magda",
+  "siblingName": "Quicksilver",
+  "standard": "V",
+  "section": "A",
+  "roleType": "Student"
+}
+
+### Thor as Student
+POST http://localhost:8080/api/registrar/student/create-student?registrarId={{registrarId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "studentName": "Thor",
+  "studentEmail": "thor@gmail.com",
+  "fatherName": "Odin",
+  "motherName": "Frigga",
+  "siblingName": "Loki",
+  "standard": "V",
+  "section": "A",
+  "roleType": "Student"
+}
+
+### Star Lord as student
+POST http://localhost:8080/api/registrar/student/create-student?registrarId={{registrarId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "studentName": "Star Lord",
+  "studentEmail": "starlord@gmail.com",
+  "fatherName": "Ego",
+  "motherName": "Meredith Quill",
+  "siblingName": "N/A",
+  "standard": "V",
+  "section": "A",
+  "roleType": "Student"
+}
+
+### ADD Teacher
+POST http://localhost:8080/api/registrar/teacher/create-employee?registrarId={{registrarId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "name": "Neelam Rai",
+  "email": "neelam@gmail.com",
+  "password": "neelam@123",
+  "date": "24-10-1985",
+  "employeeType": "Teacher",
+  "role": "Teacher"
+}
+
+### Nick Fury as Teacher
+POST http://localhost:8080/api/registrar/teacher/create-employee?registrarId={{registrarId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "name": "Nick Fury",
+  "email": "nickfury@gmail.com",
+  "password": "nickfury@123",
+  "date": "04-07-1950",
+  "employeeType": "Teacher",
+  "role": "Teacher"
+}
+
+### Captain America as Teacher
+POST http://localhost:8080/api/registrar/teacher/create-employee?registrarId={{registrarId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "name": "Captain America",
+  "email": "captainamerica@gmail.com",
+  "password": "captainamerica@123",
+  "date": "04-07-1918",
+  "employeeType": "Teacher",
+  "role": "Teacher"
+}
+
+### Black Panther as Teacher
+POST http://localhost:8080/api/registrar/teacher/create-employee?registrarId={{registrarId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "name": "Black Panther",
+  "email": "blackpanther@gmail.com",
+  "password": "blackpanther@123",
+  "date": "04-07-1966",
+  "employeeType": "Teacher",
+  "role": "Teacher"
+}
+
