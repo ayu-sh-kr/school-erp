@@ -26,10 +26,15 @@ public class Attendance {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date date;
 
-    private String code;
+    private String subject;
 
-    private int markedBy = -1;
+    private int teacherId = -1;
 
     @Enumerated(EnumType.STRING)
     private AttendanceType attendanceType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    private Student student;
+
 }
