@@ -42,6 +42,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/api/auth/**").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/api/registrar/**").hasAnyAuthority("SCOPE_ADMIN", "SCOPE_REGISTRAR");
+                    auth.requestMatchers("/api/teacher/**").hasAnyAuthority("SCOPE_ADMIN", "SCOPE_TEACHER");
                     auth.anyRequest().authenticated();
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
