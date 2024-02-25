@@ -1,0 +1,71 @@
+### Teacher Login
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "neelam@gmail.com",
+  "password": "neelam@123"
+}
+
+> {%
+    client.global.set("auth-token", response.body.object.token);
+    client.global.set("teacherId", response.body.object.userId)
+%}
+
+### Get Student
+GET http://localhost:8080/api/teacher/fetch-data?section=A&standard=V&subject=Hindi&teacherId={{teacherId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+### Mark Attendance
+POST http://localhost:8080/api/teacher/save-attendance
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+[
+  {
+    "id": null,
+    "present": true,
+    "date": "25-02-2024 01:48:59",
+    "subject": "Hindi",
+    "teacherId": "eacc8063223014ef1a3084b947d40cd55b9e9908572306347611d41e1211a257",
+    "attendanceType": "SUBJECT",
+    "studentId": "b451a944c0b2eb23783c289e206850e4a7f41f91c1fb0bca813537f7c6147815"
+  },
+  {
+    "id": null,
+    "present": true,
+    "date": "25-02-2024 01:48:59",
+    "subject": "Hindi",
+    "teacherId": "fceef7cc0b65645a15fe774e4948fd5780286f0c4b9231de4c1acf919f19c286",
+    "attendanceType": "SUBJECT",
+    "studentId": "119f0411f3b0a82fcb9ae0ae6243d9417879cb91cc0ab4e9596377b49b435a16"
+  },
+  {
+    "id": null,
+    "present": true,
+    "date": "25-02-2024 01:48:59",
+    "subject": "Hindi",
+    "teacherId": "ce71addd6279ade005ac3a41c48590539e1a28fd39bd0dda70e26661131c4900",
+    "attendanceType": "SUBJECT",
+    "studentId": "80218a365e266a4b93d2278a59ec35636b3a1845b08924388df13bc8e7cef416"
+  },
+  {
+    "id": null,
+    "present": true,
+    "date": "25-02-2024 01:48:59",
+    "subject": "Hindi",
+    "teacherId": "97b2c7ef5458fe9a90a48841455f51b5bc6b4375c0178c1bff78bea5d44d505d",
+    "attendanceType": "SUBJECT",
+    "studentId": "9d911d68ff8e86fa161fb99e061e4294163e58687ac5b3a43fa3e0725434f04d"
+  },
+  {
+    "id": null,
+    "present": false,
+    "date": "25-02-2024 01:48:59",
+    "subject": "Hindi",
+    "teacherId": "9205007cedb5ce3391be6f13aedcb864c1ac1dad904f48f76f7504b1f8ced4c3",
+    "attendanceType": "SUBJECT",
+    "studentId": "ce84844ac364ea833c6040c5103b1a7a574c80deaea1d3fb2072813471c3a7fc"
+  }
+]
