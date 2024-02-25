@@ -38,7 +38,7 @@ public class AttendanceConverter implements Converter<Attendance, AttendanceDTO>
 
         attendanceDTO.setSubject(attendance.getSubject());
         attendanceDTO.setTeacherId(
-                hexEncryptionService.decrypt(String.valueOf(attendance.getTeacherId()))
+                hexEncryptionService.encrypt(String.valueOf(attendance.getTeacherId()))
         );
 
         if(null != attendance.getAttendanceType()){
@@ -79,9 +79,11 @@ public class AttendanceConverter implements Converter<Attendance, AttendanceDTO>
                 AttendanceType.valueOf(attendanceDTO.getAttendanceType().toUpperCase())
         );
 
-        int id = Integer.parseInt(hexEncryptionService.decrypt(attendanceDTO.getId()));
-        if(studentRepository.existsById(id)){
-            attendance.setStudent(studentRepository.getReferenceById(id));
+        if(StringUtils.isNotBlank(attendanceDTO.getStudentId())){
+            int id = Integer.parseInt(hexEncryptionService.decrypt(attendanceDTO.getStudentId()));
+            if(studentRepository.existsById(id)){
+                attendance.setStudent(studentRepository.getReferenceById(id));
+            }
         }
 
         return attendance;
