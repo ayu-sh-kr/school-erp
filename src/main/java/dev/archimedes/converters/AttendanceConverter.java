@@ -3,6 +3,7 @@ package dev.archimedes.converters;
 import dev.archimedes.dtos.AttendanceDTO;
 import dev.archimedes.entities.Attendance;
 import dev.archimedes.enums.AttendanceType;
+import dev.archimedes.enums.Period;
 import dev.archimedes.repositories.AttendanceRepository;
 import dev.archimedes.repositories.StudentRepository;
 import dev.archimedes.service.contract.Converter;
@@ -32,24 +33,28 @@ public class AttendanceConverter implements Converter<Attendance, AttendanceDTO>
                     hexEncryptionService.encrypt(String.valueOf(attendance.getId()))
             );
         }
-
-        attendanceDTO.setDate(attendance.getDate());
         attendanceDTO.setPresent(attendance.isPresent());
-
+        attendanceDTO.setStandard(attendance.getStandard());
+        attendanceDTO.setSection(attendance.getSection());
+        attendanceDTO.setPeriod(attendance.getPeriod().name());
         attendanceDTO.setSubject(attendance.getSubject());
-        attendanceDTO.setTeacherId(
-                hexEncryptionService.encrypt(String.valueOf(attendance.getTeacherId()))
-        );
 
         if(null != attendance.getAttendanceType()){
             attendanceDTO.setAttendanceType(attendance.getAttendanceType().name());
         }
+
+        attendanceDTO.setTeacherId(
+                hexEncryptionService.encrypt(String.valueOf(attendance.getTeacherId()))
+        );
+
+        attendanceDTO.setDate(attendance.getDate());
 
         if(null != attendance.getStudent()){
             attendanceDTO.setStudentId(
                     hexEncryptionService.encrypt(String.valueOf(attendance.getStudent().getId()))
             );
         }
+
 
         return attendanceDTO;
     }
@@ -67,24 +72,27 @@ public class AttendanceConverter implements Converter<Attendance, AttendanceDTO>
             );
         }
 
-        attendance.setDate(attendanceDTO.getDate());
         attendance.setPresent(attendanceDTO.isPresent());
+        attendance.setStandard(attendanceDTO.getStandard());
+        attendance.setSection(attendanceDTO.getSection());
+        attendance.setPeriod(Period.valueOf(attendanceDTO.getPeriod()));
         attendance.setSubject(attendanceDTO.getSubject());
-
-        attendance.setTeacherId(
-                Integer.parseInt(hexEncryptionService.decrypt(attendanceDTO.getTeacherId()))
-        );
 
         attendance.setAttendanceType(
                 AttendanceType.valueOf(attendanceDTO.getAttendanceType().toUpperCase())
         );
 
-        if(StringUtils.isNotBlank(attendanceDTO.getStudentId())){
-            int id = Integer.parseInt(hexEncryptionService.decrypt(attendanceDTO.getStudentId()));
-            if(studentRepository.existsById(id)){
-                attendance.setStudent(studentRepository.getReferenceById(id));
-            }
-        }
+        attendance.setDate(attendanceDTO.getDate());
+
+        attendance.setTeacherId(
+                Integer.parseInt(hexEncryptionService.decrypt(attendanceDTO.getTeacherId()))
+        );
+
+        attendance.setStudent(
+                studentRepository.getReferenceById(
+                        Integer.valueOf(hexEncryptionService.decrypt(attendanceDTO.getStudentId()))
+                )
+        );
 
         return attendance;
     }

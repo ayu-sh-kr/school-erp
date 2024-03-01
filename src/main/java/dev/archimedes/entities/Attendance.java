@@ -1,14 +1,14 @@
 package dev.archimedes.entities;
 
 import dev.archimedes.enums.AttendanceType;
+import dev.archimedes.enums.Period;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -23,18 +23,21 @@ public class Attendance {
 
     private boolean present;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date date;
+    private String standard;
+
+    private String section;
+
+    @Enumerated(EnumType.STRING)
+    private Period period;
 
     private String subject;
 
-    private int teacherId = -1;
-
-    @Enumerated(EnumType.STRING)
     private AttendanceType attendanceType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "student_id")
-    private Student student;
+    private Integer teacherId;
 
+    private LocalDate date;
+
+    @ManyToOne
+    private Student student;
 }
