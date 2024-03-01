@@ -10,15 +10,25 @@ Content-Type: application/json
 > {%
     client.global.set("auth-token", response.body.object.token);
     client.global.set("teacherId", response.body.object.userId)
+    // console.log(response.body.object)
 %}
 
 ### Get Student
-GET http://localhost:8080/api/teacher/fetch-data?section=A&standard=V&subject=Hindi&teacherId={{teacherId}}
+GET http://localhost:8080/api/teacher/fetch-data
 Content-Type: application/json
 Authorization: Bearer {{auth-token}}
 
+{
+  "teacherId": "{{teacherId}}",
+  "subject": "Hindi",
+  "period": "ONE",
+  "standard": "V",
+  "section": "A",
+  "date": "2024-03-01"
+}
+
 ### Mark Attendance
-POST http://localhost:8080/api/teacher/save-attendance
+POST http://localhost:8080/api/teacher/save-attendance?standard=V&section=A&date=2024-03-01&subject=Hindi&period=ONE
 Content-Type: application/json
 Authorization: Bearer {{auth-token}}
 
@@ -26,46 +36,219 @@ Authorization: Bearer {{auth-token}}
   {
     "id": null,
     "present": true,
-    "date": "25-02-2024 01:48:59",
+    "standard": "V",
+    "section": "A",
+    "period": "ONE",
     "subject": "Hindi",
-    "teacherId": "eacc8063223014ef1a3084b947d40cd55b9e9908572306347611d41e1211a257",
+    "teacherId": "66be0f4ce133a3a91e70086e099b3ce39c2fc2ec21d936530ba8b0431ac4fc93",
     "attendanceType": "SUBJECT",
-    "studentId": "b451a944c0b2eb23783c289e206850e4a7f41f91c1fb0bca813537f7c6147815"
+    "date": "2024-03-01",
+    "studentId": "93e38afdfc289a57eca4838126a0723371e6fd213f596dfb725d516ad3d5e4fc"
   },
   {
     "id": null,
     "present": true,
-    "date": "25-02-2024 01:48:59",
+    "standard": "V",
+    "section": "A",
+    "period": "ONE",
     "subject": "Hindi",
-    "teacherId": "fceef7cc0b65645a15fe774e4948fd5780286f0c4b9231de4c1acf919f19c286",
+    "teacherId": "54046f9220c6b93bdb63656b6be9f9fec82a20371f6c9f4163b5f92f277efe54",
     "attendanceType": "SUBJECT",
-    "studentId": "119f0411f3b0a82fcb9ae0ae6243d9417879cb91cc0ab4e9596377b49b435a16"
+    "date": "2024-03-01",
+    "studentId": "5094bd3ad947cf2af09d6fe4b9429c0b4c8ed8bb37c87851e8a9c400c6bce238"
   },
   {
     "id": null,
     "present": true,
-    "date": "25-02-2024 01:48:59",
+    "standard": "V",
+    "section": "A",
+    "period": "ONE",
     "subject": "Hindi",
-    "teacherId": "ce71addd6279ade005ac3a41c48590539e1a28fd39bd0dda70e26661131c4900",
+    "teacherId": "a33973b527fbf0536edc2fdcc7471143f2551fccd9668136327ab9a5d8e128da",
     "attendanceType": "SUBJECT",
-    "studentId": "80218a365e266a4b93d2278a59ec35636b3a1845b08924388df13bc8e7cef416"
+    "date": "2024-03-01",
+    "studentId": "3f82e1f83ba6d1e7cf3b8876abb797ebfe3389041ee89221bd67dbf5da29798a"
   },
   {
     "id": null,
     "present": true,
-    "date": "25-02-2024 01:48:59",
+    "standard": "V",
+    "section": "A",
+    "period": "ONE",
     "subject": "Hindi",
-    "teacherId": "97b2c7ef5458fe9a90a48841455f51b5bc6b4375c0178c1bff78bea5d44d505d",
+    "teacherId": "8a917d5cb430e81b4cefe34e0b7746ecb3c8b4fdb686c69fa9adb47f899f90e9",
     "attendanceType": "SUBJECT",
-    "studentId": "9d911d68ff8e86fa161fb99e061e4294163e58687ac5b3a43fa3e0725434f04d"
+    "date": "2024-03-01",
+    "studentId": "6889ed49c66236d73a3fa6b85e5c01c06f7e8fcebbd29356e41e29af3ea9dfd4"
+  },
+  {
+    "id": null,
+    "present": true,
+    "standard": "V",
+    "section": "A",
+    "period": "ONE",
+    "subject": "Hindi",
+    "teacherId": "bb60df84b1e267b84a13c6c570efbdd7cae0b23dfbfad64518b8ddd28e80f54a",
+    "attendanceType": "SUBJECT",
+    "date": "2024-03-01",
+    "studentId": "c93b0aeb662495c5489133b5c511448d5a61a2d32ae9687994294ca624572700"
+  }
+]
+
+### Mark Attendance
+POST http://localhost:8080/api/teacher/save-attendance?standard=V&section=A&date=2024-03-01&subject=English&period=TWO
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+[
+  {
+    "id": null,
+    "present": false,
+    "standard": "V",
+    "section": "A",
+    "period": "TWO",
+    "subject": "English",
+    "teacherId": "66be0f4ce133a3a91e70086e099b3ce39c2fc2ec21d936530ba8b0431ac4fc93",
+    "attendanceType": "SUBJECT",
+    "date": "2024-03-01",
+    "studentId": "93e38afdfc289a57eca4838126a0723371e6fd213f596dfb725d516ad3d5e4fc"
   },
   {
     "id": null,
     "present": false,
-    "date": "25-02-2024 01:48:59",
-    "subject": "Hindi",
-    "teacherId": "9205007cedb5ce3391be6f13aedcb864c1ac1dad904f48f76f7504b1f8ced4c3",
+    "standard": "V",
+    "section": "A",
+    "period": "TWO",
+    "subject": "English",
+    "teacherId": "54046f9220c6b93bdb63656b6be9f9fec82a20371f6c9f4163b5f92f277efe54",
     "attendanceType": "SUBJECT",
-    "studentId": "ce84844ac364ea833c6040c5103b1a7a574c80deaea1d3fb2072813471c3a7fc"
+    "date": "2024-03-01",
+    "studentId": "5094bd3ad947cf2af09d6fe4b9429c0b4c8ed8bb37c87851e8a9c400c6bce238"
+  },
+  {
+    "id": null,
+    "present": false,
+    "standard": "V",
+    "section": "A",
+    "period": "TWO",
+    "subject": "English",
+    "teacherId": "a33973b527fbf0536edc2fdcc7471143f2551fccd9668136327ab9a5d8e128da",
+    "attendanceType": "SUBJECT",
+    "date": "2024-03-01",
+    "studentId": "3f82e1f83ba6d1e7cf3b8876abb797ebfe3389041ee89221bd67dbf5da29798a"
+  },
+  {
+    "id": null,
+    "present": false,
+    "standard": "V",
+    "section": "A",
+    "period": "TWO",
+    "subject": "English",
+    "teacherId": "8a917d5cb430e81b4cefe34e0b7746ecb3c8b4fdb686c69fa9adb47f899f90e9",
+    "attendanceType": "SUBJECT",
+    "date": "2024-03-01",
+    "studentId": "6889ed49c66236d73a3fa6b85e5c01c06f7e8fcebbd29356e41e29af3ea9dfd4"
+  },
+  {
+    "id": null,
+    "present": false,
+    "standard": "V",
+    "section": "A",
+    "period": "TWO",
+    "subject": "English",
+    "teacherId": "bb60df84b1e267b84a13c6c570efbdd7cae0b23dfbfad64518b8ddd28e80f54a",
+    "attendanceType": "SUBJECT",
+    "date": "2024-03-01",
+    "studentId": "c93b0aeb662495c5489133b5c511448d5a61a2d32ae9687994294ca624572700"
+  }
+]
+
+### Fetch Marked Attendances
+GET http://localhost:8080/api/teacher/fetch-marked
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "teacherId": "{{teacherId}}",
+  "subject": "English",
+  "period": "TWO",
+  "standard": "V",
+  "section": "A",
+  "date": "2024-03-01"
+}
+
+> {%
+    // if(response.body.object !== null){
+    //     response.body.object.forEach(dto => dto.present = true)
+    //     // client.global.set("updated-attendance", response.body.object)
+    // }else {}
+    // console.log('No object in api response');
+ %}
+
+### Update Marked Attendances
+PATCH http://localhost:8080//api/teacher/update-marked
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+[
+  {
+    "id": "33f590421de53e2023051df4a853cde8ab9ae210e85e24404084b3697644b361",
+    "present": true,
+    "standard": "V",
+    "section": "A",
+    "period": "TWO",
+    "subject": "English",
+    "teacherId": "5c61ebbeb9bef9510df3a959717d875989c542c2b5b05ab98069ec62e743e4fe",
+    "attendanceType": "SUBJECT",
+    "date": "2024-03-01",
+    "studentId": "55296428bf5467c82c14653f427586eceba47fc1c0175ffbbffe94d0828ffd90"
+  },
+  {
+    "id": "9e38b784b7d9d71c5a362d8fdb49fd430ff6d0b921bbfdc2dca4a07add5357dc",
+    "present": false,
+    "standard": "V",
+    "section": "A",
+    "period": "TWO",
+    "subject": "English",
+    "teacherId": "ae6cb54f02485ed0e5f115e9e32349e7b276a6f107eb0a167609249b0b661bf6",
+    "attendanceType": "SUBJECT",
+    "date": "2024-03-01",
+    "studentId": "1d9e0fce1d0252cd3dd1580746ad6e2d8484f1cb985f2405d54041e5a4b3d159"
+  },
+  {
+    "id": "8ead5a3862d491f10b26f1d9a78103a93c7529f9203411a8ebfbb6ed1b43c199",
+    "present": false,
+    "standard": "V",
+    "section": "A",
+    "period": "TWO",
+    "subject": "English",
+    "teacherId": "48f4452c9006666434fdd7e380a4d1947576a3d8e5ad8542e34c263c185b5f83",
+    "attendanceType": "SUBJECT",
+    "date": "2024-03-01",
+    "studentId": "88da428b01133341a168b140bbdccfeb3545e643bd5c2bb75caa09f5fa18d778"
+  },
+  {
+    "id": "af618038d1155654620598f2780edcce5c5c09909fe7e100212940155a24ed2c",
+    "present": true,
+    "standard": "V",
+    "section": "A",
+    "period": "TWO",
+    "subject": "English",
+    "teacherId": "0bb14d9653b6d7646ac0620a808740c3bd177cc614fb1a871ad69938ff2086bc",
+    "attendanceType": "SUBJECT",
+    "date": "2024-03-01",
+    "studentId": "19b30a40815c258dac27ef1d7ae2d03caa50670ab79a7a901d312dddde817af8"
+  },
+  {
+    "id": "453ca82e3ed119f4cb4b6262cfcd8d4eebf1c3cf89f391569d4fce58f99e4350",
+    "present": true,
+    "standard": "V",
+    "section": "A",
+    "period": "TWO",
+    "subject": "English",
+    "teacherId": "9f2219fd1ecc3c126fffffd3047982ba5cb0eb6c67adb0d65589a70f27f05c52",
+    "attendanceType": "SUBJECT",
+    "date": "2024-03-01",
+    "studentId": "d8f91dccf957654c3fd893e927a89e370a995715759d82079968fae403e632a7"
   }
 ]
