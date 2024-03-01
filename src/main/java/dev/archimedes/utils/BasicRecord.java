@@ -24,7 +24,7 @@ public class BasicRecord {
     @Column(name = "created_at", nullable = false, updatable = false)
     private Date createdAt;
 
-    @Column(name = "created_by", updatable = false)
+    @Column(name = "created_by", updatable = true)
     private Integer createdBy;
 
     @UpdateTimestamp

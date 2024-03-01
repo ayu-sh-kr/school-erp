@@ -7,7 +7,6 @@ import dev.archimedes.entities.Student;
 import dev.archimedes.repositories.EmployeeRepository;
 import dev.archimedes.repositories.StudentRepository;
 import dev.archimedes.utils.ApiResponse;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,10 +24,12 @@ public class RegistrarService {
 
     private final StudentConverter studentConverter;
 
-    public ResponseEntity<?> createStudent(@Valid Student student, int registrarId){
+    public ResponseEntity<?> createStudent(Student student, int registrarId){
         try {
             student.setCreatedBy(registrarId);
+//            System.out.println(STR."Before saving to db: \{student.getId()}");
             student = studentRepository.save(student);
+//            System.out.println(STR."After saving to db: \{student.getId()}");
             return new ResponseEntity<>(
                     ApiResponse.builder()
                             .message("Student Created Successfully")
