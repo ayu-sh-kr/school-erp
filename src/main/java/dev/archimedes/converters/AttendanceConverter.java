@@ -33,6 +33,8 @@ public class AttendanceConverter implements Converter<Attendance, AttendanceDTO>
                     hexEncryptionService.encrypt(String.valueOf(attendance.getId()))
             );
         }
+
+        attendanceDTO.setName(attendance.getStudent().getStudentName());
         attendanceDTO.setPresent(attendance.isPresent());
         attendanceDTO.setStandard(attendance.getStandard());
         attendanceDTO.setSection(attendance.getSection());

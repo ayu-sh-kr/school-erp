@@ -41,8 +41,12 @@ public class TeacherController {
                 Integer.parseInt(hexEncryptionService.decrypt(attendanceSearchParam.getTeacherId())), attendanceSearchParam.getDate()
         );
 
-        ApiResponse apiResponse = ApiResponse.generateResponse("Student fetched successfully", HttpStatus.OK);
-        apiResponse.setObject(getAttendanceDTOS(attendances, new ArrayList<>()));
+        ApiResponse apiResponse = ApiResponse.generateResponse("Student fetched successfully");
+        apiResponse.setObject(
+                attendances.stream()
+                        .map(attendance -> attendanceConverter.convert(attendance, null))
+                        .toList()
+        );
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
@@ -59,8 +63,13 @@ public class TeacherController {
 
     @GetMapping("/fetch-marked")
     public ApiResponse findAttendanceToUpdate(@RequestBody @Valid AttendanceSearchParam searchParam) {
-        ApiResponse apiResponse = ApiResponse.generateResponse("fetching searched attendance", HttpStatus.OK);
-        apiResponse.setObject(getAttendanceDTOS(teacherService.getMarkedAttendance(searchParam), new ArrayList<>()));
+        ApiResponse apiResponse = ApiResponse.generateResponse("fetching searched attendance");
+        apiResponse.setObject(
+                teacherService.getMarkedAttendance(searchParam)
+                        .stream()
+                        .map(attendance -> attendanceConverter.convert(attendance, null))
+                        .toList()
+        );
         return apiResponse;
     }
 
@@ -69,9 +78,9 @@ public class TeacherController {
         boolean updated = teacherService.updateAttendance(getAttendances(attendanceDTOS, new ArrayList<>()));
 
         if (updated) {
-            return ApiResponse.generateResponse("Updated Successfully", HttpStatus.OK);
+            return ApiResponse.generateResponse("Updated Successfully");
         }
-        return ApiResponse.generateResponse("Error", HttpStatus.INTERNAL_SERVER_ERROR);
+        return ApiResponse.generateResponse("Error");
     }
 
     List<AttendanceDTO> getAttendanceDTOS(List<Attendance> attendances, List<AttendanceDTO> attendanceDTOS) {

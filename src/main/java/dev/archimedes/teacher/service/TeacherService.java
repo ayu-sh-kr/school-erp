@@ -30,7 +30,7 @@ public class TeacherService {
         try {
             attendanceRepository.save(attendance);
             ApiResponse apiResponse = ApiResponse.generateResponse(
-                    "Attendance saved successfully", HttpStatus.OK
+                    "Attendance saved successfully"
             );
             return new ResponseEntity<>(apiResponse, HttpStatus.OK);
         }catch (Exception e){
@@ -80,26 +80,15 @@ public class TeacherService {
     }
 
     public ResponseEntity<?> saveAllAttendances(List<Attendance> attendances, AttendanceSearchParam searchParam) {
-
-        System.out.println(STR."Standard: \{searchParam.getStandard()} Section: \{searchParam.getSection()} Subject: \{searchParam.getSubject()} Period: \{searchParam.getPeriod().name()} Date: \{searchParam.getDate()}");
-        System.out.println(attendanceRepository.markedAttendanceCount(
-                searchParam.getSubject(), searchParam.getStandard(), searchParam.getSection(), searchParam.getPeriod(), searchParam.getDate())
-        );
-        System.out.println(attendanceRepository.isAttendanceMarked(
-                searchParam.getSubject(), searchParam.getStandard(), searchParam.getSection(), searchParam.getPeriod(), searchParam.getDate())
-        );
-
-        for (Attendance attendance: attendances){
-
-            if (!attendanceRepository.isAttendanceMarked(searchParam.getSubject(), searchParam.getStandard(),
-                    searchParam.getSection(), searchParam.getPeriod(), searchParam.getDate())
-            ){
-                attendanceRepository.save(attendance);
-            }else {
-                throw new AttendanceException("Attempt to update marked attendance is not allowed please try via update attendance");
-            }
+        if (!attendanceRepository.isAttendanceMarked(searchParam.getSubject(), searchParam.getStandard(),
+                searchParam.getSection(), searchParam.getPeriod(), searchParam.getDate())
+        ){
+            attendanceRepository.saveAll(attendances);
+        }else {
+            throw new AttendanceException("Attempt to update marked attendance is not allowed please try via update attendance");
         }
-        return new ResponseEntity<>(ApiResponse.generateResponse("Successfully Marked", HttpStatus.OK), HttpStatus.OK);
+
+        return new ResponseEntity<>(ApiResponse.generateResponse("Successfully Marked"), HttpStatus.OK);
     }
 
     public List<Attendance> getMarkedAttendance(AttendanceSearchParam searchParam){
