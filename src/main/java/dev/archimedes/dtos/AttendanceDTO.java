@@ -18,6 +18,11 @@ public class AttendanceDTO implements Serializable {
     private boolean present;
 
     @NotBlank
+    private String name;
+
+    private String roll;
+
+    @NotBlank
     private String standard;
 
     @NotBlank
@@ -37,6 +42,7 @@ public class AttendanceDTO implements Serializable {
 
     private LocalDate date;
 
+    @NotBlank
     private String studentId;
 
 }
