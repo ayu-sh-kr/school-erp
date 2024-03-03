@@ -1,6 +1,7 @@
 package dev.archimedes.service.security;
 
 import dev.archimedes.service.contract.EncryptionService;
+import dev.archimedes.service.exception.ServiceException;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -36,9 +37,10 @@ public class Base64EncryptionService implements EncryptionService {
             byte[] encryptedByteValue = cipher.doFinal(text.getBytes(StandardCharsets.UTF_8));
             return Base64.getEncoder().encodeToString(encryptedByteValue);
         }catch (Exception e){
-            throw new RuntimeException(e.getLocalizedMessage());
+            throw new ServiceException(e.getLocalizedMessage());
         }
     }
+
 
     @Override
     public String decrypt(String text){
@@ -48,7 +50,7 @@ public class Base64EncryptionService implements EncryptionService {
             cipher.init(Cipher.DECRYPT_MODE, key);
             return new String(cipher.doFinal(decryptedValue64), StandardCharsets.UTF_8);
         }catch (Exception e){
-            throw new RuntimeException(e.getLocalizedMessage());
+            throw new ServiceException(e.getLocalizedMessage());
         }
     }
 }
