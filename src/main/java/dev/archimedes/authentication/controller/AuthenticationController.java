@@ -63,15 +63,11 @@ public class AuthenticationController {
             stringMap.put("userId", hexEncryptionService.encrypt(
                     String.valueOf(employeeRepository.findIdByEmployee_email(loginRequest.getEmail()))
             ));
-            apiResponse = ApiResponse.generateResponse(
-                    "Login successful", HttpStatus.OK
-            );
+            apiResponse = ApiResponse.generateResponse("Login successful");
             apiResponse.setObject(stringMap);
             return new ResponseEntity<>(apiResponse, HttpStatus.OK);
         }
-        apiResponse = ApiResponse.generateResponse(
-                "Invalid Request", HttpStatus.BAD_REQUEST
-        );
+        apiResponse = ApiResponse.generateResponse("Invalid Request");
         return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
     }
 

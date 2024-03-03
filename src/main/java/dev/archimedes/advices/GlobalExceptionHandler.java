@@ -18,7 +18,7 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> customValidationException(
+    public ResponseEntity<ApiResponse> customValidationException(
             MethodArgumentNotValidException argumentNotValidException,
             HttpServletRequest webRequest
     ){
@@ -30,7 +30,6 @@ public class GlobalExceptionHandler {
 
         ApiResponse apiResponse = ApiResponse.builder()
                 .message("Validation Errors")
-                .httpStatus(HttpStatus.BAD_REQUEST)
                 .urlPath(webRequest.getRequestURI())
                 .date(new Date())
                 .object(errors)
@@ -39,39 +38,39 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ApiResponse messageNotReadableException(
+    public ResponseEntity<ApiResponse> messageNotReadableException(
             HttpMessageNotReadableException messageNotReadableException,
             HttpServletRequest httpServletRequest){
-        return ApiResponse.builder()
+        return new ResponseEntity<>(ApiResponse.builder()
                 .message("HTTP message not readable")
-                .httpStatus(HttpStatus.BAD_REQUEST)
                 .urlPath(httpServletRequest.getRequestURI())
                 .date(new Date())
                 .object(messageNotReadableException.getLocalizedMessage())
-                .build();
+                .build(), HttpStatus.BAD_REQUEST
+        );
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ApiResponse illegalArgumentException(
+    public ResponseEntity<ApiResponse> illegalArgumentException(
             IllegalArgumentException argumentException, HttpServletRequest servletRequest){
-        return ApiResponse.builder()
-                .message("Illegal Argument Exception")
-                .urlPath(servletRequest.getRequestURI())
-                .httpStatus(HttpStatus.BAD_REQUEST)
-                .object(argumentException.getLocalizedMessage())
-                .date(new Date())
-                .build();
+        return new ResponseEntity<>(
+                ApiResponse.builder()
+                        .message("Illegal Argument Exception")
+                        .urlPath(servletRequest.getRequestURI())
+                        .object(argumentException.getLocalizedMessage())
+                        .date(new Date())
+                        .build(), HttpStatus.BAD_REQUEST
+        );
     }
 
     @ExceptionHandler(AttendanceException.class)
-    public ResponseEntity<?> attendanceException(AttendanceException attendanceException, HttpServletRequest servletRequest){
+    public ResponseEntity<ApiResponse> attendanceException(AttendanceException attendanceException, HttpServletRequest servletRequest){
         return new ResponseEntity<>(ApiResponse.builder()
                 .message(attendanceException.getLocalizedMessage())
                 .urlPath(servletRequest.getRequestURI())
                 .date(new Date())
                 .object(null)
-                .httpStatus(HttpStatus.BAD_REQUEST)
-                .build()
-                , HttpStatus.BAD_REQUEST);
+                .build(), HttpStatus.BAD_REQUEST
+        );
     }
 }
