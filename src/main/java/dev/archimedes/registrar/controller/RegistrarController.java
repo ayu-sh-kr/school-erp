@@ -47,7 +47,7 @@ public class RegistrarController {
      */
 
     @PutMapping("/student/add-address")
-    public ResponseEntity<?> addAddress(
+    public ResponseEntity<ApiResponse> addAddress(
             @RequestParam("registrarId") int registrarId, @RequestParam("studentId") int studentId, @RequestBody @Valid AddressDTO addressDTO
     ){
         Address address = addressConverter.reverseConvert(addressDTO, null);
@@ -55,10 +55,10 @@ public class RegistrarController {
     }
 
     @PostMapping("/student/create-student")
-    public ResponseEntity<?> createStudent(@RequestParam("registrarId") String registrarId, @RequestBody @Valid StudentDTO studentDTO){
+    public ResponseEntity<ApiResponse> createStudent(@RequestParam("registrarId") String registrarId, @RequestBody @Valid StudentDTO studentDTO){
         if(studentRepository.existByEmail(studentDTO.getStudentEmail())){
             return new ResponseEntity<>(
-                    ApiResponse.generateResponse("Email already exist", HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST
+                    ApiResponse.generateResponse("Email already exist"), HttpStatus.BAD_REQUEST
             );
         }
         return registrarService.createStudent(
@@ -67,12 +67,12 @@ public class RegistrarController {
     }
 
     @PostMapping("/teacher/create-employee")
-    public ResponseEntity<?> createEmployee(
+    public ResponseEntity<ApiResponse> createEmployee(
             @RequestParam("registrarId") String registrarId, @RequestBody @Valid EmployeeRegistrationDTO employeeRegistrationDTO
     ){
         if(employeeRepository.existsByEmail(employeeRegistrationDTO.getEmail())){
             return new ResponseEntity<>(
-                    ApiResponse.generateResponse("Email already exist", HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST
+                    ApiResponse.generateResponse("Email already exist"), HttpStatus.BAD_REQUEST
             );
         }
         return registrarService.createEmployee(

@@ -24,18 +24,15 @@ public class RegistrarService {
 
     private final StudentConverter studentConverter;
 
-    public ResponseEntity<?> createStudent(Student student, int registrarId){
+    public ResponseEntity<ApiResponse> createStudent(Student student, int registrarId){
         try {
             student.setCreatedBy(registrarId);
-//            System.out.println(STR."Before saving to db: \{student.getId()}");
             student = studentRepository.save(student);
-//            System.out.println(STR."After saving to db: \{student.getId()}");
             return new ResponseEntity<>(
                     ApiResponse.builder()
                             .message("Student Created Successfully")
                             .date(new Date())
                             .object(studentConverter.convert(student, null))
-                            .httpStatus(HttpStatus.CREATED)
                     .build(),
                     HttpStatus.CREATED
             );
@@ -44,7 +41,7 @@ public class RegistrarService {
         }
     }
 
-    public ResponseEntity<?> addAddressToStudent(Address address, int registrarId, int studentId){
+    public ResponseEntity<ApiResponse> addAddressToStudent(Address address, int registrarId, int studentId){
         try {ApiResponse apiResponse;
             if(studentRepository.existsById(studentId)){
                 Student student = studentRepository.getReferenceById(studentId);
@@ -52,8 +49,7 @@ public class RegistrarService {
                 student.setUpdatedBy(registrarId);
                 student = studentRepository.save(student);
                 apiResponse = ApiResponse.generateResponse(
-                        "Address Added",
-                        HttpStatus.OK
+                        "Address Added"
                 );
                 apiResponse.setObject(
                         studentConverter.convert(student, null)
@@ -66,13 +62,13 @@ public class RegistrarService {
         }
     }
 
-    public ResponseEntity<?> createEmployee(Employee employee, int registrarId){
+    public ResponseEntity<ApiResponse> createEmployee(Employee employee, int registrarId){
         try{
             ApiResponse apiResponse;
                 employee.setCreatedBy(registrarId);
                 employee = employeeRepository.save(employee);
                 apiResponse = ApiResponse.generateResponse(
-                        "Employee Created", HttpStatus.CREATED
+                        "Employee Created"
                 );
                 apiResponse.setObject(employee);
                 return new ResponseEntity<>(apiResponse, HttpStatus.CREATED);
@@ -81,7 +77,7 @@ public class RegistrarService {
         }
     }
 
-    public ResponseEntity<?> addAddressToEmployee(Address address, int registrarId, int employeeId){
+    public ResponseEntity<ApiResponse> addAddressToEmployee(Address address, int registrarId, int employeeId){
         try {
             ApiResponse apiResponse;
             if(employeeRepository.existsById(employeeId)){
@@ -89,12 +85,12 @@ public class RegistrarService {
                 employee.addAddress(address);
                 employee.setUpdatedBy(registrarId);
                 apiResponse = ApiResponse.generateResponse(
-                        "Address Added", HttpStatus.OK
+                        "Address Added"
                 );
                 return new ResponseEntity<>(apiResponse, HttpStatus.OK);
             }
             apiResponse = ApiResponse.generateResponse(
-                    "Invalid employee id", HttpStatus.BAD_REQUEST
+                    "Invalid employee id"
             );
             return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
         }catch (Exception e){
