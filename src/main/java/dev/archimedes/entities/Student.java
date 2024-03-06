@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -64,6 +66,9 @@ public class Student extends BasicRecord {
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Attendance> attendances = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private Set<Subject> subjects = new HashSet<>();
 
     public void addAddress(Address address){
         this.addresses.add(address);

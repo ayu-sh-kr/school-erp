@@ -16,7 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,13 +42,13 @@ public class AuthenticationController {
     private final EmployeeRepository employeeRepository;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody @Valid EmployeeRegistrationDTO employeeRegistrationDTO){
+    public ResponseEntity<ApiResponse> register(@RequestBody @Valid EmployeeRegistrationDTO employeeRegistrationDTO){
         Employee employee = employeeRegistrationConverter.reverseConvert(employeeRegistrationDTO, null);
         return registrarService.createEmployee(employee, 1);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Validated LoginRequest loginRequest){
+    public ResponseEntity<ApiResponse> login(@RequestBody @Valid LoginRequest loginRequest){
 
         Authentication request = new UsernamePasswordAuthenticationToken(
                 loginRequest.getEmail(), loginRequest.getPassword()
