@@ -2,12 +2,12 @@ package dev.archimedes.authentication.controller;
 
 import dev.archimedes.authentication.dtos.EmployeeRegistrationDTO;
 import dev.archimedes.authentication.dtos.LoginRequest;
-import dev.archimedes.converters.EmployeeRegistrationConverter;
-import dev.archimedes.entities.Employee;
+import dev.archimedes.global.converters.EmployeeRegistrationConverter;
+import dev.archimedes.global.entities.Employee;
 import dev.archimedes.registrar.service.RegistrarService;
-import dev.archimedes.repositories.EmployeeRepository;
-import dev.archimedes.service.contract.EncryptionService;
-import dev.archimedes.service.security.TokenService;
+import dev.archimedes.global.repositories.EmployeeRepository;
+import dev.archimedes.global.service.contract.EncryptionService;
+import dev.archimedes.global.service.security.TokenService;
 import dev.archimedes.utils.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

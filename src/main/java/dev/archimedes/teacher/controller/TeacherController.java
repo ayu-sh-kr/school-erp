@@ -1,11 +1,11 @@
 package dev.archimedes.teacher.controller;
 
-import dev.archimedes.converters.AttendanceConverter;
-import dev.archimedes.dtos.AttendanceDTO;
-import dev.archimedes.entities.Attendance;
-import dev.archimedes.enums.Period;
-import dev.archimedes.repositories.AttendanceRepository;
-import dev.archimedes.service.contract.EncryptionService;
+import dev.archimedes.global.converters.AttendanceConverter;
+import dev.archimedes.global.dtos.AttendanceDTO;
+import dev.archimedes.global.entities.Attendance;
+import dev.archimedes.global.enums.Period;
+import dev.archimedes.global.repositories.AttendanceRepository;
+import dev.archimedes.global.service.contract.EncryptionService;
 import dev.archimedes.teacher.dto.AttendanceSearchParam;
 import dev.archimedes.teacher.service.TeacherService;
 import dev.archimedes.utils.ApiResponse;

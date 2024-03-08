@@ -1,16 +1,16 @@
 package dev.archimedes.registrar.controller;
 
 import dev.archimedes.authentication.dtos.EmployeeRegistrationDTO;
-import dev.archimedes.converters.AddressConverter;
-import dev.archimedes.converters.EmployeeRegistrationConverter;
-import dev.archimedes.converters.StudentConverter;
-import dev.archimedes.dtos.AddressDTO;
-import dev.archimedes.dtos.StudentDTO;
-import dev.archimedes.entities.Address;
+import dev.archimedes.global.converters.AddressConverter;
+import dev.archimedes.global.converters.EmployeeRegistrationConverter;
+import dev.archimedes.global.converters.StudentConverter;
+import dev.archimedes.global.dtos.AddressDTO;
+import dev.archimedes.global.dtos.StudentDTO;
+import dev.archimedes.global.entities.Address;
 import dev.archimedes.registrar.service.RegistrarService;
-import dev.archimedes.repositories.EmployeeRepository;
-import dev.archimedes.repositories.StudentRepository;
-import dev.archimedes.service.contract.EncryptionService;
+import dev.archimedes.global.repositories.EmployeeRepository;
+import dev.archimedes.global.repositories.StudentRepository;
+import dev.archimedes.global.service.contract.EncryptionService;
 import dev.archimedes.utils.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

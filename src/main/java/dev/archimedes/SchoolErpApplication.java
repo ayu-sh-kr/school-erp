@@ -1,9 +1,9 @@
 package dev.archimedes;
 
-import dev.archimedes.entities.Employee;
-import dev.archimedes.enums.EmployeeType;
-import dev.archimedes.enums.RoleType;
-import dev.archimedes.repositories.EmployeeRepository;
+import dev.archimedes.global.entities.Employee;
+import dev.archimedes.global.enums.EmployeeType;
+import dev.archimedes.global.enums.RoleType;
+import dev.archimedes.global.repositories.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

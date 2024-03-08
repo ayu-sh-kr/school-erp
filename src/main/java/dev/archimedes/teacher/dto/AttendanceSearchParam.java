@@ -1,6 +1,6 @@
 package dev.archimedes.teacher.dto;
 
-import dev.archimedes.enums.Period;
+import dev.archimedes.global.enums.Period;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

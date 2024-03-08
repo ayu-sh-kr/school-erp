@@ -1,7 +1,7 @@
 package dev.archimedes.image.controller;
 
 import dev.archimedes.image.service.ImageService;
-import dev.archimedes.service.contract.EncryptionService;
+import dev.archimedes.global.service.contract.EncryptionService;
 import dev.archimedes.utils.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
 package dev.archimedes.utils.validators;
 
-import dev.archimedes.enums.EmployeeType;
+import dev.archimedes.global.enums.EmployeeType;
 import dev.archimedes.utils.validators.annotations.ValidEmployee;
 import io.micrometer.common.util.StringUtils;
 import jakarta.validation.ConstraintValidator;

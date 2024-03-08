@@ -1,6 +1,6 @@
 package dev.archimedes.utils.validators;
 
-import dev.archimedes.enums.RoleType;
+import dev.archimedes.global.enums.RoleType;
 import dev.archimedes.utils.validators.annotations.ValidRole;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

@@ -1,11 +1,11 @@
 package dev.archimedes.registrar.service;
 
-import dev.archimedes.converters.StudentConverter;
-import dev.archimedes.entities.Address;
-import dev.archimedes.entities.Employee;
-import dev.archimedes.entities.Student;
-import dev.archimedes.repositories.EmployeeRepository;
-import dev.archimedes.repositories.StudentRepository;
+import dev.archimedes.global.converters.StudentConverter;
+import dev.archimedes.global.entities.Address;
+import dev.archimedes.global.entities.Employee;
+import dev.archimedes.global.entities.Student;
+import dev.archimedes.global.repositories.EmployeeRepository;
+import dev.archimedes.global.repositories.StudentRepository;
 import dev.archimedes.utils.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

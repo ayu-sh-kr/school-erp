@@ -1,6 +1,6 @@
 package dev.archimedes.utils.validators;
 
-import dev.archimedes.enums.AttendanceType;
+import dev.archimedes.global.enums.AttendanceType;
 import dev.archimedes.utils.validators.annotations.ValidAttendance;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

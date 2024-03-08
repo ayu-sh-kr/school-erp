@@ -4,7 +4,7 @@ import dev.archimedes.image.entity.Image;
 import dev.archimedes.image.exception.ImageProcessingException;
 import dev.archimedes.image.repository.ImageRepository;
 import dev.archimedes.image.utils.ImageUtils;
-import dev.archimedes.service.contract.EncryptionService;
+import dev.archimedes.global.service.contract.EncryptionService;
 import dev.archimedes.utils.ApiResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

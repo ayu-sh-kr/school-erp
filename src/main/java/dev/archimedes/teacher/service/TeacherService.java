@@ -1,11 +1,11 @@
 package dev.archimedes.teacher.service;
 
-import dev.archimedes.entities.Attendance;
-import dev.archimedes.entities.Student;
-import dev.archimedes.enums.AttendanceType;
-import dev.archimedes.enums.Period;
-import dev.archimedes.repositories.AttendanceRepository;
-import dev.archimedes.repositories.StudentRepository;
+import dev.archimedes.global.entities.Attendance;
+import dev.archimedes.global.entities.Student;
+import dev.archimedes.global.enums.AttendanceType;
+import dev.archimedes.global.enums.Period;
+import dev.archimedes.global.repositories.AttendanceRepository;
+import dev.archimedes.global.repositories.StudentRepository;
 import dev.archimedes.teacher.dto.AttendanceSearchParam;
 import dev.archimedes.teacher.exception.AttendanceException;
 import dev.archimedes.utils.ApiResponse;

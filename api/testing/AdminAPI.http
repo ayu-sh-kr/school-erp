@@ -1,0 +1,97 @@
+###
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "ayush.store.7913@gmail.com",
+  "password": "admin"
+}
+
+> {%
+    client.global.set("auth-token", response.body.object.token);
+    client.global.set("adminId", response.body.object.userId)
+%}
+
+###
+POST http://localhost:8080/api/admin/create-registrar?adminId={{adminId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "name": "Kevin Feige",
+  "email": "kevin.feige@example.com",
+  "password": "kevin123",
+  "date": "04-07-1918",
+  "employeeType": "Registrar",
+  "role": "Registrar"
+}
+
+### Jack Snyder as Registrar
+POST http://localhost:8080/api/admin/create-registrar?adminId={{adminId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "name": "Jack Snyder",
+  "email": "jack.snyder@example.com",
+  "password": "jack123",
+  "date": "04-07-1918",
+  "employeeType": "Registrar",
+  "role": "Registrar"
+}
+
+### Steven Spielberg as Registrar
+POST http://localhost:8080/api/admin/create-registrar?adminId={{adminId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "name": "Steven Spielberg",
+  "email": "steven.spielberg@example.com",
+  "password": "steven123",
+  "date": "04-07-1918",
+  "employeeType": "Registrar",
+  "role": "Registrar"
+}
+
+### Christopher Nolan as Registrar
+POST http://localhost:8080/api/admin/create-registrar?adminId={{adminId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "name": "Christopher Nolan",
+  "email": "christopher.nolan@example.com",
+  "password": "nolan123",
+  "date": "04-07-1918",
+  "employeeType": "Registrar",
+  "role": "Registrar"
+}
+
+### Quentin Tarantino as Registrar
+POST http://localhost:8080/api/admin/create-registrar?adminId={{adminId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "name": "Quentin Tarantino",
+  "email": "quentin.tarantino@example.com",
+  "password": "tarantino123",
+  "date": "04-07-1918",
+  "employeeType": "Registrar",
+  "role": "Registrar"
+}
+
+### Martin Scorsese as Registrar
+POST http://localhost:8080/api/admin/create-registrar?adminId={{adminId}}
+Content-Type: application/json
+Authorization: Bearer {{auth-token}}
+
+{
+  "name": "Martin Scorsese",
+  "email": "martin.scorsese@example.com",
+  "password": "scorsese123",
+  "date": "04-07-1918",
+  "employeeType": "Registrar",
+  "role": "Registrar"
+}
